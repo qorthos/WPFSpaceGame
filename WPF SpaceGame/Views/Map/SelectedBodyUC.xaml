@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="WPFSpaceGame.Views.Map.SelectedBodyUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:WPFSpaceGame.Views"
+             xmlns:local="clr-namespace:WPFSpaceGame.Views.Map"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="180">
+    <Grid>
+        <Grid.Resources>
+            <views:DoubleConverter x:Key="doubleConverter" />
+        </Grid.Resources>
+        <GroupBox Header="Body Info">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Body.Name}"/>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Body.Mass, StringFormat= Mass: {0}, Converter={StaticResource doubleConverter}, ConverterParameter='kg' }"/>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Body.Orbital_Speed, StringFormat= Speed: {0}, Converter={StaticResource doubleConverter}, ConverterParameter='kms' }"/>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Body.Orbital_Period, StringFormat= Period: {0}, Converter={StaticResource doubleConverter}, ConverterParameter='seconds' }"/>
+            </StackPanel>   
+        </GroupBox>
+    </Grid>
+</UserControl>

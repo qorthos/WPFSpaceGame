@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="WPFSpaceGame.Views.Map.MapUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFSpaceGame.Views.Map"
+             xmlns:general="clr-namespace:WPFSpaceGame.General"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1366">
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type local:SelectedBodyVM}">
+            <local:SelectedBodyUC />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:SelectedVesselVM}">
+            <local:SelectedVesselUC />
+        </DataTemplate>
+
+    </UserControl.Resources>
+    
+    
+    <Grid>
+        <DockPanel>
+            <ContentControl DockPanel.Dock="Top" VerticalAlignment="Top" Content="{Binding TopBarContent}"></ContentControl>            
+            <DockPanel DockPanel.Dock="Left" Width="180">
+                <GroupBox DockPanel.Dock="Top" Header="Map Visuals">
+                    <StackPanel Margin="1">
+                        <TextBlock>Selected System:</TextBlock>
+                        <ComboBox HorizontalAlignment="Stretch" Width="160" SelectedItem="{Binding SelectedSystem}" ItemsSource="{Binding Systems}"></ComboBox>
+                        <TextBlock Width="160">Layers</TextBlock>
+                        <CheckBox>Planets</CheckBox>
+                        <CheckBox>Moons</CheckBox>
+                        <CheckBox>Asteroids</CheckBox>
+                        <CheckBox>Ships</CheckBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Width="50">All</Button>
+                            <Button Width="50">None</Button>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                </GroupBox>
+
+                <GroupBox Header="Bodies in System" DockPanel.Dock="Top">
+                        <ListBox ItemsSource="{Binding MapBodies}" SelectedItem="{Binding SelectedMapBody}" DockPanel.Dock="Top" Height="200">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Padding" Value="1"></Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>                        
+                </GroupBox>
+                <ContentControl DockPanel.Dock="Top" Content="{Binding SelectedBodyVM}"/>
+            </DockPanel>
+            
+            <general:MonoGameControl DockPanel.Dock="Top" Item="{Binding GraphicsItem}" ItemData="{Binding GraphicsItemData}"/>
+        </DockPanel>
+        
+    </Grid>
+</UserControl>

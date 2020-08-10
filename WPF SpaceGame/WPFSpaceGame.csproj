@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="2.1.1" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.3.0" />
+    <PackageReference Include="MonoGame.Extended" Version="3.7.0" />
+    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.7.1.189" />
+    <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.8" />
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MonoGameContentReference Include="**\*.mgcb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Content\bin\Windows\Content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MonoGame.Extended.Tweening\MonoGame.Extended.Tweening.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\NewGameSettingsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Map\MapUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Content\circle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\label.spritefont">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\NewGameSettingsUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Map\MapUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

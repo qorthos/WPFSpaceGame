@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="WPFSpaceGame.Views.Map.SelectedVesselUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:WPFSpaceGame.Views"
+             xmlns:local="clr-namespace:WPFSpaceGame.Views.Map"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="180">
+    <Grid>
+        <Grid.Resources>
+            <views:DoubleConverter x:Key="doubleConverter" />
+            <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+            <views:BooleanToNotVisibilityConverter x:Key="VisibleIfFalseConverter" />
+        </Grid.Resources>
+        <GroupBox Header="Ship Info">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Body.Name}"/>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Body.GlobalPosition, StringFormat= Position: {0}}"/>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Body.Mass, StringFormat= Mass: {0}, Converter={StaticResource doubleConverter}, ConverterParameter='kg' }"/>
+                                
+                <!--when docked-->
+                <TextBlock HorizontalAlignment="Left" 
+                           Visibility="{Binding Body.IsLockedToParent, Converter={StaticResource VisibleIfTrueConverter}}" 
+                           Text="{Binding Body.Parent.Name, StringFormat= Is Docked At: {0}}"/>
+                
+                <!--when not docked-->
+                <TextBlock HorizontalAlignment="Left" 
+                           Visibility="{Binding Body.IsLockedToParent, Converter={StaticResource VisibleIfFalseConverter}}" 
+                           Text="{Binding Body.Orbital_Speed, StringFormat= Speed: {0}, Converter={StaticResource doubleConverter}, ConverterParameter='kms' }"/>
+                <TextBlock HorizontalAlignment="Left" 
+                           Visibility="{Binding Body.IsLockedToParent, Converter={StaticResource VisibleIfFalseConverter}}" 
+                           Text="{Binding Body.Orbital_Period, StringFormat= Period: {0}, Converter={StaticResource doubleConverter}, ConverterParameter='seconds' }"/>
+
+                <Separator/>
+                <TextBlock HorizontalAlignment="Left"
+                           Text="{Binding Vessel.DestinationTarget, StringFormat= Destination: {0}}"/>
+                <ComboBox SelectedItem="{Binding NewDestination}" ItemsSource="{Binding OrbitalBodies}"/>
+                <Button Command="{Binding SetDestination}">Go</Button>
+
+                
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

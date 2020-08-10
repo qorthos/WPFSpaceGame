@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="WPFSpaceGame.Views.NewGameSettingsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFSpaceGame.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1366">
+    <Grid>
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30">
+            <GroupBox Header="Game Settings" DockPanel.Dock="Top">
+                <TextBlock>Settings will go here.</TextBlock>                
+            </GroupBox>
+            <GroupBox Header="Empire Settings" DockPanel.Dock="Top">
+                <TextBlock>Settings will go here.</TextBlock>
+            </GroupBox>
+            <Button Width="100" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Command="{Binding CMDStartNewGame}">Start</Button>
+            <Label></Label>
+        </DockPanel>
+        
+    </Grid>
+</UserControl>
