@@ -131,7 +131,7 @@ namespace WPFSpaceGame.Views.Map
                 if (SelectedMapBody.BodyClassification == BodyClassification.Vessel)
                 {
                     SelectedBodyVM = VMManager.GetVM<SelectedVesselVM>();
-                    (SelectedBodyVM as SelectedVesselVM).Body = SelectedMapBody;
+                    (SelectedBodyVM as SelectedVesselVM).SelectedBody = SelectedMapBody;
                 }
                 else
                 {

@@ -10,6 +10,7 @@ using WPFSpaceGame.Game;
 using WPFSpaceGame.Game.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Tweening;
+using System.Net;
 
 namespace WPFSpaceGame.Views.Map
 {
@@ -262,6 +263,9 @@ namespace WPFSpaceGame.Views.Map
             var vessel = body.GetComponent<Vessel>();
             if (vessel.NavRoute != null)
             {
+                if (vessel.NavRoute.PredictedPositions.Count <= 1)
+                    return;
+
                 int startIndex = (int)((GameData.CurrentDate - vessel.NavRoute.StartDate).TotalSeconds / vessel.NavRoute.TotalTime * vessel.NavRoute.PredictedPositions.Count);
 
                 for (int i = startIndex; i < vessel.NavRoute.PredictedPositions.Count - 1; i++)

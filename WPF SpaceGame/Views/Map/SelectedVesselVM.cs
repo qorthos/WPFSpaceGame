@@ -12,66 +12,57 @@ namespace WPFSpaceGame.Views.Map
 {
     public class SelectedVesselVM : ViewModel
     {
-        private OrbitalBody body;
-        private Vessel vessel;
-        private ObservableCollection<OrbitalBody> orbitalBodies = new ObservableCollection<OrbitalBody>();
+        private OrbitalBody selectedBody;
+        private Vessel selectedVessel;
+        private ObservableCollection<OrbitalBody> destinations = new ObservableCollection<OrbitalBody>();
         private OrbitalBody newDestination;
 
         public RelayCommand SetDestination { get; private set; }
 
-
-        public OrbitalBody Body
+        public OrbitalBody SelectedBody
         {
             get
             {
-                return body;
+                return selectedBody;
             }
 
             set
             {
-                body = value;
+                selectedBody = value;
                 Notify();
 
-                
-                var bodies = GameData.GetComponents<OrbitalBody>();                
-                orbitalBodies.Clear();
-                NewDestination = bodies.First();
-                foreach (OrbitalBody body in bodies)
+                // load up available destinations.
+                destinations.Clear();
+                var stellarSystem = selectedBody.StellarSystem;
+                foreach (OrbitalBody child in stellarSystem.Children)
                 {
-                    if (body == Body)
-                        continue;
-
-                    orbitalBodies.Add(body);
+                    if (child.Parent == null) // we only want the top level objects in the system.
+                        AddDestination(child);
                 }
 
-                Vessel = Body.GetComponent<Vessel>();
+                SelectedVessel = SelectedBody.GetComponent<Vessel>();
             }
         }
 
-        public Vessel Vessel
+        public Vessel SelectedVessel
         {
             get
             {
-                return vessel;
+                return selectedVessel;
             }
 
             set
             {
-                vessel = value;
+                selectedVessel = value;
                 Notify();
             }
         }
 
-        public ObservableCollection<OrbitalBody> OrbitalBodies
+        public ObservableCollection<OrbitalBody> Destinations
         {
             get
             {
-                return orbitalBodies;
-            }
-
-            set
-            {
-                OrbitalBodies = value;
+                return destinations;
             }
         }
 
@@ -89,16 +80,35 @@ namespace WPFSpaceGame.Views.Map
             }
         }
 
-
         public SelectedVesselVM() : base(true)
         {
             SetDestination = new RelayCommand(x => ExecuteSetDestination());
         }
 
-
         private void ExecuteSetDestination()
         {
-            Vessel.DestinationTarget = NewDestination;
+            SelectedVessel.DestinationTarget = NewDestination;
+        }
+
+        private void AddDestination(OrbitalBody destinationBody)
+        {
+            if (destinationBody == selectedBody)
+            {
+                // do nothing
+            }
+            else if ((destinationBody == selectedBody.Parent) && (selectedBody.IsLockedToParent == true))
+            {
+                // do nothing
+            }
+            else
+            {
+                destinations.Add(destinationBody);
+            }
+
+            foreach (OrbitalBody child in destinationBody.Children)
+            {
+                AddDestination(child);
+            }
         }
     }
 }
