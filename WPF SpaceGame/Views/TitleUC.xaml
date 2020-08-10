@@ -8,7 +8,7 @@
             d:DesignHeight="800" d:DesignWidth="1366">
     <Grid>
         <DockPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="30">
-            <TextBlock DockPanel.Dock="Top" FontSize="30" Padding="30">WPFSpaceGame OF MAN</TextBlock>
+            <TextBlock DockPanel.Dock="Top" FontSize="30" Padding="30">UNTITLED SPACE GAME</TextBlock>
             <Button DockPanel.Dock="Top" Command="{Binding CMDStartNewGame}">Start New Game</Button>
             <Button DockPanel.Dock="Top">Load Game</Button>
             <Button DockPanel.Dock="Top">Quit</Button>

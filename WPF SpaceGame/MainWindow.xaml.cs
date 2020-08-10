@@ -5,6 +5,7 @@ using WPFSpaceGame.Views;
 using WPFSpaceGame.Game;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace WPFSpaceGame
 {
@@ -36,7 +37,12 @@ namespace WPFSpaceGame
 
         private void LaunchGitHubSite(object sender, RoutedEventArgs e)
         {
-            // Launch the GitHub site...
+            var psi = new ProcessStartInfo
+            {
+                FileName = "https://github.com/qorthos/WPFSpaceGame",
+                UseShellExecute = true
+            };
+            Process.Start(psi);
         }
 
         private void AdvanceDay(object sender, RoutedEventArgs e)
