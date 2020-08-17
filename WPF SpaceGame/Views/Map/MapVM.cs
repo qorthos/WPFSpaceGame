@@ -89,11 +89,16 @@ namespace WPFSpaceGame.Views.Map
                 selectedSystem = value;
                 Notify();
 
-                MapData.SelectedSystem = value;                
+                MapData.SelectedSystem = value;   
 
                 MapBodies.Clear();
                 foreach (OrbitalBody childBody in SelectedSystem.Children)
-                    MapBodies.Add(childBody);
+                {
+                    if (childBody.Parent != null)
+                        continue; // just get top level ones
+
+                    AddMapBody(childBody);
+                }
 
                 SelectedMapBody = MapBodies[0];
             }
@@ -183,6 +188,14 @@ namespace WPFSpaceGame.Views.Map
             base.Focused();
         }
 
+        private void AddMapBody(OrbitalBody newBody)
+        {
+            MapBodies.Add(newBody);
+            foreach (OrbitalBody child in newBody.Children)
+            {
+                AddMapBody(child);
+            }
+        }
     }
 
 

@@ -15,34 +15,39 @@ namespace WPFSpaceGame.Game
         {
 
             // create sol system
-            var solSystem = EntityFactory.CreateSystem("Sol System").GetComponent<StellarSystem>();
+            var solSystem = EntityFactory.CreateSystem("New Sol System").GetComponent<StellarSystem>();
 
             // create a star
-            var sol = EntityFactory.CreateBody(solSystem, BodyClassification.Star, null,
+            var sol = EntityFactory.CreatePlanetoid(solSystem, BodyClassification.Star, null,
                 1.989 * Math.Pow(10, 30),
                 1,
-                "Sol");
+                "New Sol");
 
             // create some planets
-            var earth = EntityFactory.CreateBody(solSystem, BodyClassification.Planet, sol.GetComponent<OrbitalBody>(),
-                5.972 * Math.Pow(10, 24),
-                151.78 * 1000 * 1000, "Earth");
+            var newEarth = EntityFactory.CreatePlanetoid(solSystem, BodyClassification.Planet, sol.GetComponent<OrbitalBody>(),
+                6.0 * Math.Pow(10, 24),
+                140 * 1000 * 1000, "New Earth");
 
-            var mars = EntityFactory.CreateBody(solSystem, BodyClassification.Planet, sol.GetComponent<OrbitalBody>(),
-                6.417 * Math.Pow(10, 23),
-                228 * 1000 * 1000, "Mars");
+            var newEarthPlanetoid = newEarth.GetComponent<Planetoid>();
+            
 
-            // create mun
-            var moon = EntityFactory.CreateBody(solSystem, BodyClassification.Moon, earth.GetComponent<OrbitalBody>(),
-                7.347 * Math.Pow(10, 22),
-                384.4 * 1000, "Moon");
+                var uma = EntityFactory.CreatePlanetoid(solSystem, BodyClassification.Moon, newEarth.GetComponent<OrbitalBody>(),
+                    4 * Math.Pow(10, 22),
+                    350 * 1000, "Uma");
+
+            var delos = EntityFactory.CreatePlanetoid(solSystem, BodyClassification.Planet, sol.GetComponent<OrbitalBody>(),
+                2.5 * Math.Pow(10, 24),
+                230 * 1000 * 1000, "Delos");
+
+                var maggie = EntityFactory.CreatePlanetoid(solSystem, BodyClassification.Moon, delos.GetComponent<OrbitalBody>(),
+                    2 * Math.Pow(10, 22),
+                    400 * 1000, "Maggie");
 
             // create player faction
-            EntityFactory.CreateFaction("PLA", true, "Sol System", "Earth");
+            EntityFactory.CreateFaction("PLA", true, "New Sol System", "New Earth");
 
             // create a test ship
-            var ship = EntityFactory.CreateVessel(solSystem, earth.GetComponent<OrbitalBody>(), true, "USN Jebediah Kerman");
-            ship.GetComponent<Vessel>().DestinationTarget = sol.GetComponent<OrbitalBody>();
+            var ship = EntityFactory.CreateVessel(solSystem, newEarth.GetComponent<OrbitalBody>(), true, "USN Jebediah Kerman");
         }
     }
 }

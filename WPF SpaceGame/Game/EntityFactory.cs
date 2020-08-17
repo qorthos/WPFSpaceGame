@@ -23,8 +23,8 @@ namespace WPFSpaceGame.Game
             }
         }
 
-        public static Entity CreateBody(StellarSystem stellarSystem, BodyClassification bodyClassification = BodyClassification.Star, OrbitalBody parent = null, double mass = 1000, 
-            double orbital_radius = 1000, string name = "NewBody")
+        public static Entity CreatePlanetoid(StellarSystem stellarSystem, BodyClassification bodyClassification = BodyClassification.Star, OrbitalBody parent = null, double mass = 1000, 
+            double orbital_radius = 1000, string name = "NewBody", double albedo = 0.5, double planetaryRadius = 151000)
         {
             Entity entity = new Entity();
 
@@ -37,7 +37,14 @@ namespace WPFSpaceGame.Game
                 Orbital_Radius = orbital_radius,
                 Parent = parent,
             };
-            
+
+            _ = new Planetoid(entity)
+            {
+                Albedo = albedo,
+                PolarTemperatureVariation = 30,
+                Radius = planetaryRadius,
+            };
+
 
             var sysSprite = new SystemSprite(entity)
             {

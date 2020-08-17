@@ -27,6 +27,7 @@ namespace WPFSpaceGame
             _ = new WPFSpaceGame.Game.Systems.GSStellarBodies(); 
             _ = new WPFSpaceGame.Game.Politics.GSPolitics();
             _ = new WPFSpaceGame.Game.Systems.GSVessels();
+            _ = new WPFSpaceGame.Game.Systems.GSPlanets();
             _ = new WPFSpaceGame.Game.GSNewGame();
 
             gameService.Initialize();

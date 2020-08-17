@@ -93,6 +93,14 @@ namespace WPFSpaceGame.Game.Systems
             }
         }
 
+        public ObservableCollection<OrbitalBody> Children
+        {
+            get
+            {
+                return children;
+            }
+        }
+
         public bool IsLockedToParent
         {
             get
@@ -107,13 +115,7 @@ namespace WPFSpaceGame.Game.Systems
             }
         }
 
-        public ObservableCollection<OrbitalBody> Children
-        {
-            get
-            {
-                return children;
-            }
-        }
+
 
         public Double2 GlobalPosition
         {
