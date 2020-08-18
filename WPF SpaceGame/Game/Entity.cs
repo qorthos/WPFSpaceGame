@@ -13,7 +13,6 @@ namespace WPFSpaceGame.Game
         private Guid id;
         List<Component> components = new List<Component>();
 
-
         public Guid Id
         {
             get
@@ -21,7 +20,6 @@ namespace WPFSpaceGame.Game
                 return id;
             }
         }
-
 
         public List<Component> Components
         {
@@ -31,12 +29,10 @@ namespace WPFSpaceGame.Game
             }
         }
 
-
         public Entity()
         {
             id = Guid.NewGuid();
         }
-
 
         public T GetComponent<T>() where T: Component
         {

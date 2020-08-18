@@ -92,6 +92,10 @@ namespace WPFSpaceGame.General
                 graphicsDeviceService = new MonoGameGraphicsDeviceService();
                 ServiceProvider.Instance.AddService<IGraphicsDeviceService>(graphicsDeviceService);
             }
+            else
+            {
+                graphicsDeviceService = (MonoGameGraphicsDeviceService)ServiceProvider.Instance.GetService<IGraphicsDeviceService>();
+            }
 
             _instanceCount++;
             Loaded += OnLoaded;
@@ -182,9 +186,9 @@ namespace WPFSpaceGame.General
         {
             base.OnRenderSizeChanged(sizeInfo);
             
-            // sometimes OnRenderSizeChanged happens before OnLoaded.
-            Start();
-            ResetBackBufferReference();
+            //// sometimes OnRenderSizeChanged happens before OnLoaded.
+            //Start();
+            //ResetBackBufferReference();
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)

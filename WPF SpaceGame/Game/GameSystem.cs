@@ -19,6 +19,11 @@ namespace WPFSpaceGame.Game
             get { return GameService.GameData; }
         }
 
+        protected DefLibrary DefLibrary
+        {
+            get { return GameService.DefLibrary; }
+        }
+
         public GameSystem()
         {
             GameService = ServiceProvider.Instance.GetService<GameService>();

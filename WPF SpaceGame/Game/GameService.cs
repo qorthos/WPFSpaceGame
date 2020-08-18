@@ -23,7 +23,7 @@ namespace WPFSpaceGame.Game
 
         // GAME SYSTEMS
         List<GameSystem> gameSystems = new List<GameSystem>();
-        
+        public DefLibrary DefLibrary = new DefLibrary();
         
         public event NewGameDataEvent NewGameDataEvent;
         public event NewGameLoadedEvent NewGameLoadedEvent;

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="WPFSpaceGame.Views.Colonies.ColonyUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFSpaceGame.Views.Colonies"
+             xmlns:general="clr-namespace:WPFSpaceGame.General"
+             xmlns:views="clr-namespace:WPFSpaceGame.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1366">
+    <Grid>
+        <DockPanel>
+            <views:TopBarUC DockPanel.Dock="Top" VerticalAlignment="Top"></views:TopBarUC>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBlock Text="Selected Colony: " VerticalAlignment="Center"></TextBlock>
+                <ComboBox Width="200"></ComboBox>                
+            </StackPanel>
+            
+            
+        </DockPanel>
+    </Grid>
+</UserControl>

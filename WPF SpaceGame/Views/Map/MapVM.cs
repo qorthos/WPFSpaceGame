@@ -25,7 +25,6 @@ namespace WPFSpaceGame.Views.Map
 
     public class MapVM : ViewModel
     {
-        private ViewModel topBarContent;
         private MonoGameItem graphicsItem;
         private MapData graphicsItemData;
 
@@ -37,20 +36,6 @@ namespace WPFSpaceGame.Views.Map
 
         private ViewModel selectedBodyVM;
 
-
-        public ViewModel TopBarContent
-        {
-            get
-            {
-                return topBarContent;
-            }
-
-            set
-            {
-                topBarContent = value;
-                Notify();
-            }
-        }
 
         public MonoGameItem GraphicsItem
         {
@@ -165,11 +150,18 @@ namespace WPFSpaceGame.Views.Map
         {
             GraphicsItemData = new MapData();
             OnNewGame();
-            TopBarContent = VMManager.GetVM<TopBarVM>();
         }
 
         protected override void OnNewGame()
         {
+
+        }
+
+        public override void Focused()
+        {
+            if (GraphicsItem == null)
+                GraphicsItem = new SystemGraphics();
+
             var playerFaction = GameData.GetComponents<Faction>().First(x => x.IsPlayer == true);
             SelectedSystem = playerFaction.StartingSystem;
 
@@ -179,12 +171,7 @@ namespace WPFSpaceGame.Views.Map
             {
                 Systems.Add(system);
             }
-        }
 
-        public override void Focused()
-        {
-            if (GraphicsItem == null)
-                GraphicsItem = new SystemGraphics();
             base.Focused();
         }
 

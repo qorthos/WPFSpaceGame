@@ -9,6 +9,7 @@
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:WPFSpaceGame"
     xmlns:views="clr-namespace:WPFSpaceGame.Views"
+    xmlns:colonies="clr-namespace:WPFSpaceGame.Views.Colonies"
     xmlns:map="clr-namespace:WPFSpaceGame.Views.Map"
     xmlns:systems="clr-namespace:WPFSpaceGame.Game.Systems"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -28,8 +29,8 @@
         <DataTemplate DataType="{x:Type map:MapVM}">
             <map:MapUC />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type views:TopBarVM}">
-            <views:TopBarUC />
+        <DataTemplate DataType="{x:Type colonies:ColonyVM}">
+            <colonies:ColonyUC />
         </DataTemplate>
         <views:DoubleConverter x:Key="doubleConverter" />
 

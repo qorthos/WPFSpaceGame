@@ -5,6 +5,7 @@ namespace MonoGame.Extended.Tweening
 {
     public static class EasingFunctions
     {
+        public static double None(double value) => 0;
         public static double Linear(double value) => value;
 
         public static double CubicIn(double value) => Power.In(value, 3);

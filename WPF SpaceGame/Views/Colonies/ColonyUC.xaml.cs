@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFSpaceGame.Views.Map
+namespace WPFSpaceGame.Views.Colonies
 {
     /// <summary>
-    /// Interaction logic for MapUC.xaml
+    /// Interaction logic for ColonyUC.xaml
     /// </summary>
-    public partial class MapUC : UserControl
+    public partial class ColonyUC : UserControl
     {
-        public MapUC()
+        public ColonyUC()
         {
             InitializeComponent();
         }

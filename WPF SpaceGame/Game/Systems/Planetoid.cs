@@ -117,7 +117,7 @@ namespace WPFSpaceGame.Game.Systems
 
         public Planetoid(Entity entity) : base(entity)
         {
-
+            atmosphere = new Atmosphere();
         }
     }
 }
